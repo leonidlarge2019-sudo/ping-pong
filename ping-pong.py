@@ -25,7 +25,7 @@ class Player(GameSprite):
 
         if key_pressed[K_LEFT] and self.rect.x > 1:
             self.rect.x -= self.speed
-        if key_pressed[K_RIGHT] and self.rect.x < 635:
+        if key_pressed[K_RIGHT] and self.rect.x < 600:
             self.rect.x += self.speed
         
     def updated(self):
@@ -33,8 +33,11 @@ class Player(GameSprite):
 
         if key_pressed[K_a] and self.rect.x > 1:
             self.rect.x -= self.speed
-        if key_pressed[K_d] and self.rect.x < 635:
+        if key_pressed[K_d] and self.rect.x < 600:
             self.rect.x += self.speed
+
+platforma1 = Player('platforma.jpg', 300, 20, 100, 20, 7)
+platforma2 = Player('platforma.jpg', 300, 470, 100, 20, 7)
 
 
 game = True
@@ -44,10 +47,12 @@ while game:
         if e.type == QUIT:
             game = False
 
-
-
+    platforma1.updated()
+    platforma2.updater()
 
     window.blit(background, (0,0))
+    platforma1.draw()
+    platforma2.draw()
 
 
 
