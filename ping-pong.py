@@ -2,7 +2,10 @@ from pygame import *
 
 window = display.set_mode((700, 500))
 display.set_caption('пинг-понг')
-background = transform.scale(image.load('.jpg'), (700, 500))
+background = transform.scale(image.load('fone.jpg'), (700, 500))
+
+clock = time.Clock()
+
 
 class GameSprite(sprite.Sprite):
     def __init__(self, player_image, player_x, player_y, player_width, player_height, speed):
@@ -17,18 +20,21 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))    
 
 class Player(GameSprite):
-    def updateu(self):
+    def updater(self):
         key_pressed = key.get_pressed()
 
-        if key_pressed[K_UP] and self.rect.x > 1:
+        if key_pressed[K_LEFT] and self.rect.x > 1:
             self.rect.x -= self.speed
-        if key_pressed[K_DOWN] and self.rect.x < 635:
+        if key_pressed[K_RIGHT] and self.rect.x < 635:
             self.rect.x += self.speed
-
+        
     def updated(self):
         key_pressed = key.get_pressed()
 
-        if key_pressed[K_w] and self.rect.
+        if key_pressed[K_a] and self.rect.x > 1:
+            self.rect.x -= self.speed
+        if key_pressed[K_d] and self.rect.x < 635:
+            self.rect.x += self.speed
 
 
 game = True
@@ -41,9 +47,10 @@ while game:
 
 
 
-
+    window.blit(background, (0,0))
 
 
 
 
     display.update()
+    clock.tick(60)
